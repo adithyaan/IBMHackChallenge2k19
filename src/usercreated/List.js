@@ -24,14 +24,14 @@ class ListView extends Component{
     }
 
     createListItem(items) {
-        return items.map(x=>
+        return items.map(element=>
             (<div>
                 <ListItem alignItems="flex-start">
                     {/*<ListItemAvatar>*/}
                     {/*    <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />*/}
                     {/*</ListItemAvatar>*/}
                     <ListItemText
-                        primary="Brunch this weekend?"
+                        primary={element.title}
                         secondary={
                             <React.Fragment>
                                 <Typography
@@ -40,9 +40,9 @@ class ListView extends Component{
                                     className={useStyles.inline}
                                     color="textPrimary"
                                 >
-                                    Ali Connors
+                                    {element.owner.display_name}
                                 </Typography>
-                                {" — I'll be in your neighborhood doing errands this…"}
+                                {element.link}
                             </React.Fragment>
                         }
                     />
@@ -54,7 +54,7 @@ class ListView extends Component{
 
     render() {
 
-        const items = [ "x", "y", "8"];
+        const items = this.props.results;
 
         return (
             <List className={useStyles.root}>
