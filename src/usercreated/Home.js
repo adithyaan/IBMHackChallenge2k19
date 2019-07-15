@@ -1,9 +1,14 @@
 import AppBar from '@material-ui/core/AppBar';
 import React ,{ Component } from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import { makeStyles, createMuiTheme } from '@material-ui/core/styles';
+import SearchIcon from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
+import { ThemeProvider } from '@material-ui/styles';
+import Fab from '@material-ui/core/Fab';
+import { green } from '@material-ui/core/colors';
+import Box from '@material-ui/core/Box';
+import {Typography} from "@material-ui/core";
 
 class Home extends Component{
 
@@ -25,24 +30,72 @@ class Home extends Component{
 
     render(){
         const appBarChildStyle = {
+            backgroundColor: '#fafafb'
+        };
 
-        };
-        const inputProps = {
-            step: 300,
-        };
+        const useStyles = makeStyles(theme => ({
+
+            textField: {
+                marginLeft: theme.spacing(1),
+                marginRight: theme.spacing(1),
+            },
+            input:{
+                color: 'white',
+            },
+            fab: {
+                margin: theme.spacing(1),
+                padding: 20,
+            },
+
+        }));
+        const theme = createMuiTheme({
+            palette: {
+                primary: green,
+            },
+            overrides: {
+                //MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline
+                MuiInputBase: {
+                    input: {
+                        color: 'green',
+                    },
+                },
+            },
+        });
         return(
             <div>
                 <AppBar position="static" style = {appBarChildStyle}>
                     <Toolbar>
-                        <Typography variant="h6" color="inherit" className="grow" >
-                            StackOverFlow Search
-                        </Typography>
-                        <TextField id="time" type="text" inputProps={inputProps} value={this.state.textInput} onChange={this.onTextChange} />
-                        <Button color="inherit" onClick={this.handleSubmit}>Search</Button>
+                        <Box flexGrow={1}>
+                            <img src={require("./stackoverflowicon.PNG")} alt="SO Search    "></img>
+                            <Typography style={{color:'green'}}>
+                                Search Tool
+                            </Typography>
+                        </Box>
+                        <Box flexGrow={2}>
+                            <ThemeProvider theme={theme}>
+                            <TextField
+                                id="input"
+                                fullWidth={true}
+                                type="text"
+                                autoFocus = {true}
+                                label = "Enter Query"
+                                margin="normal"
+                                multiline
+                                classes={useStyles.textField}
+                                variant="outlined"
+                                value={this.state.textInput}
+                                onChange={this.onTextChange} />
+                            </ThemeProvider>
+                        </Box>
+                        <Box>
+                            <Fab color="primary" aria-label="Add" style={{marginRight:20, marginLeft:20}} onClick={this.handleSubmit} className={useStyles.fab}>
+                                <SearchIcon />
+                            </Fab>
+                        </Box>
                     </Toolbar>
                 </AppBar>
             </div>
-            
+
         )
     }
 
