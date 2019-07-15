@@ -24,7 +24,7 @@ class Home extends Component{
 
     constructor(props){
         super(props)
-        this.state = {textInput:"",search_results:[]};
+        this.state = {textInput:"",search_results:[],show:false};
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -41,8 +41,9 @@ class Home extends Component{
         // alert(finalurl);
         var promise=fetch(finalurl)
         var result=promise.then((response)=>response.json());
+        const st = this;
         result.then((response)=>{
-              this.setState({search_results:response,show:true});
+              st.setState({search_results:response.items,show:true});
               alert(this.state.search_results);
 
           });
@@ -87,7 +88,7 @@ class Home extends Component{
                 <AppBar position="static" style = {appBarChildStyle}>
                     <Toolbar>
                         <Box flexGrow={1}>
-                            <img src={require("./stackoverflowicon.PNG")} alt="SO Search    "></img>
+                            <img src={require("./stackoverflowicon.PNG")} alt="SO Search"></img>
                             <Typography style={{color:'green'}}>
                                 Search Tool
                             </Typography>
@@ -122,60 +123,14 @@ class Home extends Component{
 
               <Card style={styles.listitem}>
             <ListItem key={value} button >
-              <ListItemAvatar>
-                <Avatar
-                  alt={`Avatar n°${value}`}
-                  src="https://cdn3.iconfinder.com/data/icons/wpzoom-developer-icon-set/500/38-512.png"
 
-                />
-              </ListItemAvatar>
-          <ListItemText primary={<b>{(value.name).toUpperCase()}</b>  }  secondary={
+          <ListItemText primary={<b>{(value.tags[0])}</b>  }  secondary={
             <React.Fragment>
               <Typography component="span" color="textPrimary">
-                      {value.description}
+                      {value.owner.user_id}
               </Typography>
             </React.Fragment>
           }/>
-
-            </ListItem>
-            <ListItem key={value} button >
-              <ListItemAvatar>
-                <Avatar
-                  alt={`Avatar n°${value}`}
-                  src="https://cdn4.iconfinder.com/data/icons/rcons-user/32/secret_agent_man-512.png"
-
-                />
-              </ListItemAvatar>
-          <ListItemText primary={<b>{(value.casts).toUpperCase()}</b>  }  secondary={
-            <React.Fragment>
-              <Typography component="span" color="textPrimary">
-                      {value.releasedon}
-              </Typography>
-            </React.Fragment>
-          }/>
-
-            </ListItem>
-{/*
-            <ListItem key={value} button >
-              <ListItemAvatar>
-                <Avatar
-                  alt={`Avatar n°${value}`}
-                  src="https://cdn3.iconfinder.com/data/icons/main-ui-elements-with-color-bg-vol-2/512/heart-512.png"
-                />
-              </ListItemAvatar>
-          <ListItemText primary={<b>{(value.casts).toUpperCase()}</b>  }  secondary={
-            <React.Fragment>
-              <Typography component="span" color="textPrimary">
-                      {value.releasedon}
-              </Typography>
-            </React.Fragment>
-          }/>
-            </ListItem> */}
-            <ListItem style={{display: 'flex',flex: 1,alignItems:'flex-end'}}>
-            <Avatar
-                              alt={`Avatar n°${value}`}
-
-            src="https://cdn4.iconfinder.com/data/icons/basic-ui-2-line/32/heart-love-like-likes-loved-favorite-512.png"/>
 
             </ListItem>
             </Card>
