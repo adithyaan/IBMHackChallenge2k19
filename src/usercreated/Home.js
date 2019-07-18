@@ -37,9 +37,9 @@ class Home extends Component{
     }
 
     handleSubmit() {
-        var url1="https://api.stackexchange.com//2.2/search/advanced?order=desc&sort=activity&q=";
+        var url1="https://api.stackexchange.com//2.2/search/advanced?order=desc&sort=relevance&q=";
         var url2=this.state.textInput+"&";
-        var url3="site=stackoverflow";
+        var url3="site=stackoverflow&filter=!0V-ZwUEu0wMbto7XPem1M8Bnq";
         var finalurl=url1+url2+url3;
 
         // alert(finalurl);
@@ -48,6 +48,8 @@ class Home extends Component{
         result.then((response)=>{
               this.setState({search_results:response.items,show:true});
               alert(this.state.search_results);
+
+              console.log(this.state.search_results);
 
           });
 
