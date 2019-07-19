@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import List from "@material-ui/core/List";
 import {makeStyles} from "@material-ui/core";
 import Divider from '@material-ui/core/Divider';
-import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
 import ReactHtmlParser from 'react-html-parser';
 import ListItem from '@material-ui/core/ListItem';
-import Collapsible from "react-collapsible";
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import ThumbUp from '@material-ui/icons/ThumbUp';
+import Icon from '@material-ui/core/Icon';
+import Collapsible from 'react-collapsible';
+import Button from '@material-ui/core/Button';
+import TextField from "@material-ui/core/TextField";
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -49,43 +50,34 @@ class TopAnswers extends Component{
         console.log(ans);
 
         return ans.map(element=>(
-            <div>
+            <div style={{border:'2px solid green',margin:10}}>
                 <ListItem>
-                    {/*<Collapsible trigger={
-
+                    <div style={{display: 'flex', justifyContent: 'space-between' }}>
+                        <div style={{width:70,fontSize:15,padding:20}}>
+                            <Icon color="primary">
+                                <ThumbUp/>{element.score}
+                            </Icon>
+                        </div>
+                        <div style={{width:900,fontSize:15}}>
+                            { ReactHtmlParser(element.body) }
+                        </div>
+                        <div style={{width:100, padding:20, fontSize: 15}}>
+                            {element.owner.display_name}
+                        </div>
+                    </div>
+                </ListItem>
+                <div style={{marginLeft:130}}>
+                    <Collapsible trigger={
+                        <p style={{color:'blue'}}>Comments</p>
                     } alignItems="flex-start">
-                        <div>
-                            <List className={useStyles.root}>
+                        <div style={{margin:10,backgroundColor:'#42A5F5',color:'#fff',width:'70%'}}>
+                            <List>
                                 {this.createComment(element)}
                             </List>
                         </div>
-                    </Collapsible>*/}
-
-                    <div className={gridStyle.root}>
-                        <Grid container spacing={2}>
-                            {/*<Grid item xs={1}>*/}
-
-                            {/*</Grid>*/}
-                            <Grid item xs={10}>
-                                <React.Fragment>
-                                    <Typography variant="body2" color="textSecondary" className={useStyles.answerText} component="p">
-                                        { ReactHtmlParser(element.body) }
-                                    </Typography>
-                                </React.Fragment>
-                            </Grid>
-                            <Grid item xs={2}>
-                                <div>
-                                    {
-                                        "Score: "+element.score +"\n"+"IsAccepted: "+ element.is_accepted
-                                    }
-                                    {element.owner.display_name}
-                                </div>
-                            </Grid>
-                        </Grid>
-                    </div>
-
-                </ListItem>
-                <Divider variant="inset" component="li" />
+                    </Collapsible>
+                </div>
+                <Divider variant="middle" component="li" />
             </div>
         ));
     };
@@ -99,26 +91,14 @@ class TopAnswers extends Component{
         }
 
         return comments.map((element)=>
-            (<div>
-                    <ListItem>
-
-                        <ListItemText
-                            primary={element.creation_date}
-                            secondary={
-                                <React.Fragment>
-                                    <Typography
-                                        component="span"
-                                        variant="body2"
-                                        className={useStyles.inline}
-                                        color="textPrimary"
-                                    >
-                                        { ReactHtmlParser(element.body) }
-                                    </Typography>
-                                </React.Fragment>
-                            }
-                        />
-                    </ListItem>
-                    <Divider variant="inset" component="li" />
+            (   <div style={{padding:10}}>
+                    <div style={{fontSize:15}}>
+                        { ReactHtmlParser(element.body) }
+                    </div>
+                    <div style={{fontSize: 15}}>
+                        {element.owner.display_name}
+                    </div>
+                    {/*<Divider variant="fullWidth" component="li" />*/}
                 </div>
             ));
     }
@@ -127,6 +107,12 @@ class TopAnswers extends Component{
         const answers = this.props.results;
         return (
             <div>
+                <div style={{position:'absolute',right:2, margin:10}}>
+                    <TextField color={'#000000'} style={{width:50}} type={'number'} InputLabelProps={{ shrink: true }}/>
+                    <Button>Filter</Button>
+                </div>
+                <br/>
+                <br/>
                 <List className={useStyles.root}>
                     {this.renderAnswers(answers)}
                 </List>

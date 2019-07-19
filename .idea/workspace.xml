@@ -19,8 +19,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/usercreated/Home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="22" column="6378" selection-start-line="22" selection-start-column="6378" selection-end-line="22" selection-end-column="6378" />
+            <state relative-caret-position="-320">
+              <caret line="121" column="44" selection-start-line="121" selection-start-column="44" selection-end-line="121" selection-end-column="44" />
               <folding>
                 <element signature="e#4#50#0" expanded="true" />
                 <element signature="e#116#120#0" expanded="true" />
@@ -72,8 +72,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/usercreated/TopAnswers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="625">
-              <caret line="84" column="26" selection-start-line="84" selection-start-column="26" selection-end-line="84" selection-end-column="26" />
+            <state relative-caret-position="130">
+              <caret line="52" column="56" lean-forward="true" selection-start-line="52" selection-start-column="56" selection-end-line="52" selection-end-column="56" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -92,7 +92,13 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+      <find>answerText</find>
       <find>answers</find>
+      <find>textField</find>
+      <find>appBarChildStyle</find>
+      <find>green</find>
+      <find>root</find>
+      <find>white</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -209,24 +215,24 @@
       <updated>1563165469096</updated>
       <workItem from="1563165471614" duration="13344000" />
       <workItem from="1563418646100" duration="1454000" />
-      <workItem from="1563510451780" duration="10600000" />
+      <workItem from="1563510451780" duration="18218000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25398000" />
+    <option name="totallyTimeSpent" value="33016000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2247191" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2247191" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32916668" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32916668" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -287,16 +293,6 @@
     <entry file="file://$PROJECT_DIR$/src/usercreated/stackoverflowicon.PNG">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/usercreated/List.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="51" column="2" lean-forward="true" selection-start-line="51" selection-start-column="2" selection-end-line="80" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -304,10 +300,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@material-ui/icons/ThumbUpAlt.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@material-ui/icons/ThumbUp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="21" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/usercreated/List.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="72" column="45" lean-forward="true" selection-start-line="65" selection-start-column="31" selection-end-line="72" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@material-ui/icons/QuestionAnswerRounded.d.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@material-ui/core/colors/deepPurple.d.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@material-ui/core/colors/deepOrange.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="17" lean-forward="true" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@material-ui/core/colors/brown.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@material-ui/core/colors/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="9" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/usercreated/Home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="22" column="6378" selection-start-line="22" selection-start-column="6378" selection-end-line="22" selection-end-column="6378" />
+        <state relative-caret-position="-320">
+          <caret line="121" column="44" selection-start-line="121" selection-start-column="44" selection-end-line="121" selection-end-column="44" />
           <folding>
             <element signature="e#4#50#0" expanded="true" />
             <element signature="e#116#120#0" expanded="true" />
@@ -357,8 +396,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/usercreated/TopAnswers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="625">
-          <caret line="84" column="26" selection-start-line="84" selection-start-column="26" selection-end-line="84" selection-end-column="26" />
+        <state relative-caret-position="130">
+          <caret line="52" column="56" lean-forward="true" selection-start-line="52" selection-start-column="56" selection-end-line="52" selection-end-column="56" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
