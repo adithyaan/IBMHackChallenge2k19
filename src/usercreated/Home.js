@@ -12,6 +12,7 @@
     import Alist from "./Alist";
     import CircularProgress from '@material-ui/core/CircularProgress';
     import ListView from "./List";
+    import TopAnswers from "./TopAnswers";
 
 
     class Home extends Component{
@@ -20,7 +21,7 @@
 
         constructor(props){
             super(props)
-            this.state = {textInput:"",search_results:[],show:false,sorted_data:[], showProgress: true};
+            this.state = {textInput:"",search_results:[],show:false,sorted_data:[], showProgress: false , showAnswers: false};
             this.handleSubmit = this.handleSubmit.bind(this);
             this.onKeyDown = this.onKeyDown.bind(this);
             this.filterData = this.filterData.bind(this);
@@ -35,11 +36,13 @@
             if (event.key === 'Enter') {
                 event.preventDefault();
                 event.stopPropagation();
+
                 this.handleSubmit();
             }
         }
 
         handleSubmit() {
+            this.setState({showProgress: true});
             var url1="https://api.stackexchange.com//2.2/search/advanced?order=desc&sort=relevance&q=";
             var url2=this.state.textInput+"&";
             var url3="site=stackoverflow&filter=!0V-ZwUEu0wMbto7XPem1M8Bnq";
@@ -48,14 +51,10 @@
             // alert(finalurl);
             var promise=fetch(finalurl)
             var result=promise.then((response)=>response.json());
-            var filter= result.then((response)=>{
-                  this.setState({search_results:response.items,show:true,showProgress: false});
-                    console.log(response);
-                });
-              filter.then((json)=>{
-               var answers=this.state.search_results[1].answers;
-            //    alert(JSON.stringify(answers[0].score));
-              })
+            result.then((response)=>{
+                  this.setState({search_results:response.items,show:false ,showAnswers: true,showProgress:false});
+                  console.log(response);
+            });
 
         }
 
@@ -140,13 +139,17 @@
                     <div>
                         {
                             this.state.showProgress && <center><CircularProgress className={useStyles.progress} disableShrink /></center>
-
                         }
                         {/*Displays list of responses from stack overflow*/}
-                  {
-                      this.state.show && <ListView results={this.state.search_results} />
-                  }
-                </div>
+                        {
+                            this.state.show && <ListView results={this.state.search_results} />
+                        }
+
+                        {
+                            this.state.showAnswers && <TopAnswers results={this.state.search_results} />
+                        }
+
+                    </div>
                 </div>
 
             )
