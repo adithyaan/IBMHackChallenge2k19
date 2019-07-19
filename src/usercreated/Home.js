@@ -88,6 +88,7 @@
                 },
                 progress: {
                     margin: theme.spacing(2),
+
                 },
             }));
             const theme = createMuiTheme({
@@ -138,7 +139,7 @@
                     </AppBar>
                     <div>
                         {
-                            this.state.showProgress && <CircularProgress className={useStyles.progress} disableShrink />
+                            this.state.showProgress && <center><CircularProgress className={useStyles.progress} disableShrink /></center>
 
                         }
                         {/*Displays list of responses from stack overflow*/}
