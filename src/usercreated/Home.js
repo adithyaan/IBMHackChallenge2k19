@@ -9,15 +9,18 @@
     import { green } from '@material-ui/core/colors';
     import Box from '@material-ui/core/Box';
     import {Typography} from "@material-ui/core";
-    import Alist from "./Alist";
     import CircularProgress from '@material-ui/core/CircularProgress';
     import ListView from "./List";
     import TopAnswers from "./TopAnswers";
 
 
+    const styles = {
+        position:'absolute',
+        left: '48%',
+        top: '45%'
+    };
+
     class Home extends Component{
-
-
 
         constructor(props){
             super(props)
@@ -36,13 +39,13 @@
             if (event.key === 'Enter') {
                 event.preventDefault();
                 event.stopPropagation();
-
                 this.handleSubmit();
             }
         }
 
         handleSubmit() {
-            this.setState({showProgress: true});
+
+            this.setState({showProgress: true, show:false,showAnswers:false});
             var url1="https://api.stackexchange.com//2.2/search/advanced?order=desc&sort=relevance&q=";
             var url2=this.state.textInput+"&";
             var url3="site=stackoverflow&filter=!0V-ZwUEu0wMbto7XPem1M8Bnq";
@@ -138,7 +141,7 @@
                     </AppBar>
                     <div>
                         {
-                            this.state.showProgress && <center><CircularProgress className={useStyles.progress} disableShrink /></center>
+                            this.state.showProgress && <center><CircularProgress className={useStyles.progress} style={styles}disableShrink /></center>
                         }
                         {/*Displays list of responses from stack overflow*/}
                         {
