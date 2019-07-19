@@ -16,37 +16,66 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/usercreated/Home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="46" column="12" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
+            <state relative-caret-position="209">
+              <caret line="22" column="6378" selection-start-line="22" selection-start-column="6378" selection-end-line="22" selection-end-column="6378" />
               <folding>
                 <element signature="e#4#50#0" expanded="true" />
+                <element signature="e#116#120#0" expanded="true" />
+                <element signature="e#171#175#0" expanded="true" />
+                <element signature="e#159#164#1" expanded="true" />
+                <element signature="e#20#25#0" expanded="true" />
+                <element signature="e#133#138#1" expanded="true" />
+                <element signature="e#30#35#0" expanded="true" />
+                <element signature="e#187#192#1" expanded="true" />
+                <element signature="e#401#405#0" expanded="true" />
+                <element signature="e#19#25#0" expanded="true" />
+                <element signature="e#63#67#0" expanded="true" />
+                <element signature="e#74#78#0" expanded="true" />
+                <element signature="e#147#153#0" expanded="true" />
+                <element signature="e#253#261#0" expanded="true" />
+                <element signature="e#151#155#0" expanded="true" />
+                <element signature="e#862#867#0" expanded="true" />
+                <element signature="e#185#189#0" expanded="true" />
+                <element signature="e#204#208#0" expanded="true" />
+                <element signature="e#255#259#0" expanded="true" />
+                <element signature="e#18#22#0" expanded="true" />
+                <element signature="e#26#30#0" expanded="true" />
+                <element signature="e#223#228#0" expanded="true" />
+                <element signature="e#228#233#0" expanded="true" />
+                <element signature="e#307#315#0" expanded="true" />
+                <element signature="e#119#124#0" expanded="true" />
+                <element signature="e#129#134#1" expanded="true" />
+                <element signature="e#30#35#0" expanded="true" />
+                <element signature="e#103#108#1" expanded="true" />
+                <element signature="e#136#141#1" expanded="true" />
+                <element signature="e#153#158#1" expanded="true" />
+                <element signature="e#14#19#0" expanded="true" />
+                <element signature="e#40#45#0" expanded="true" />
+                <element signature="e#109#115#0" expanded="true" />
+                <element signature="e#119#125#0" expanded="true" />
+                <element signature="e#8#13#0" expanded="true" />
+                <element signature="e#73#78#0" expanded="true" />
+                <element signature="e#89#94#0" expanded="true" />
+                <element signature="e#69#75#0" expanded="true" />
+                <element signature="e#157#163#1" expanded="true" />
+                <element signature="e#322#330#0" expanded="true" />
+                <element signature="e#21#26#0" expanded="true" />
+                <element signature="e#119#124#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/usercreated/TopAnswers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1734">
-              <caret line="115" column="31" lean-forward="true" selection-start-line="115" selection-start-column="31" selection-end-line="115" selection-end-column="31" />
+            <state relative-caret-position="625">
+              <caret line="84" column="26" selection-start-line="84" selection-start-column="26" selection-end-line="84" selection-end-column="26" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/usercreated/List.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="51" column="2" lean-forward="true" selection-start-line="51" selection-start-column="2" selection-end-line="80" selection-end-column="5" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -61,6 +90,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>answers</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -71,8 +105,8 @@
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/usercreated/Toolbar.js" />
         <option value="$PROJECT_DIR$/src/usercreated/List.js" />
-        <option value="$PROJECT_DIR$/src/usercreated/TopAnswers.js" />
         <option value="$PROJECT_DIR$/src/usercreated/Home.js" />
+        <option value="$PROJECT_DIR$/src/usercreated/TopAnswers.js" />
       </list>
     </option>
   </component>
@@ -175,18 +209,18 @@
       <updated>1563165469096</updated>
       <workItem from="1563165471614" duration="13344000" />
       <workItem from="1563418646100" duration="1454000" />
-      <workItem from="1563510451780" duration="6226000" />
+      <workItem from="1563510451780" duration="10600000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21024000" />
+    <option name="totallyTimeSpent" value="25398000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2247191" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2247191" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -212,9 +246,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@material-ui/icons/BluetoothSearching.d.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -266,22 +297,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/usercreated/TopAnswers.js">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1734">
-          <caret line="115" column="31" lean-forward="true" selection-start-line="115" selection-start-column="31" selection-end-line="115" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="153">
+          <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/usercreated/Home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="46" column="12" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
+        <state relative-caret-position="209">
+          <caret line="22" column="6378" selection-start-line="22" selection-start-column="6378" selection-end-line="22" selection-end-column="6378" />
           <folding>
             <element signature="e#4#50#0" expanded="true" />
+            <element signature="e#116#120#0" expanded="true" />
+            <element signature="e#171#175#0" expanded="true" />
+            <element signature="e#159#164#1" expanded="true" />
+            <element signature="e#20#25#0" expanded="true" />
+            <element signature="e#133#138#1" expanded="true" />
+            <element signature="e#30#35#0" expanded="true" />
+            <element signature="e#187#192#1" expanded="true" />
+            <element signature="e#401#405#0" expanded="true" />
+            <element signature="e#19#25#0" expanded="true" />
+            <element signature="e#63#67#0" expanded="true" />
+            <element signature="e#74#78#0" expanded="true" />
+            <element signature="e#147#153#0" expanded="true" />
+            <element signature="e#253#261#0" expanded="true" />
+            <element signature="e#151#155#0" expanded="true" />
+            <element signature="e#862#867#0" expanded="true" />
+            <element signature="e#185#189#0" expanded="true" />
+            <element signature="e#204#208#0" expanded="true" />
+            <element signature="e#255#259#0" expanded="true" />
+            <element signature="e#18#22#0" expanded="true" />
+            <element signature="e#26#30#0" expanded="true" />
+            <element signature="e#223#228#0" expanded="true" />
+            <element signature="e#228#233#0" expanded="true" />
+            <element signature="e#307#315#0" expanded="true" />
+            <element signature="e#119#124#0" expanded="true" />
+            <element signature="e#129#134#1" expanded="true" />
+            <element signature="e#30#35#0" expanded="true" />
+            <element signature="e#103#108#1" expanded="true" />
+            <element signature="e#136#141#1" expanded="true" />
+            <element signature="e#153#158#1" expanded="true" />
+            <element signature="e#14#19#0" expanded="true" />
+            <element signature="e#40#45#0" expanded="true" />
+            <element signature="e#109#115#0" expanded="true" />
+            <element signature="e#119#125#0" expanded="true" />
+            <element signature="e#8#13#0" expanded="true" />
+            <element signature="e#73#78#0" expanded="true" />
+            <element signature="e#89#94#0" expanded="true" />
+            <element signature="e#69#75#0" expanded="true" />
+            <element signature="e#157#163#1" expanded="true" />
+            <element signature="e#322#330#0" expanded="true" />
+            <element signature="e#21#26#0" expanded="true" />
+            <element signature="e#119#124#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/usercreated/TopAnswers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="84" column="26" selection-start-line="84" selection-start-column="26" selection-end-line="84" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>

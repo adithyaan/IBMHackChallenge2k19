@@ -7,16 +7,24 @@ import Typography from '@material-ui/core/Typography';
 import ReactHtmlParser from 'react-html-parser';
 import ListItem from '@material-ui/core/ListItem';
 import Collapsible from "react-collapsible";
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
-        maxWidth: 360,
         backgroundColor: theme.palette.background.paper,
     },
     inline: {
         display: 'inline',
-    },
+    }
+}));
+
+
+const gridStyle = makeStyles(theme => ({
+    root: {
+        flexGrow: 1,
+    }
 }));
 
 class TopAnswers extends Component{
@@ -43,42 +51,38 @@ class TopAnswers extends Component{
         return ans.map(element=>(
             <div>
                 <ListItem>
+                    {/*<Collapsible trigger={
 
-                    <Collapsible trigger={
-                        <ListItemText
-                            primary={element.owner.display_name}
-                            secondary={
-                                <React.Fragment>
-                                    <Typography
-                                        component="span"
-                                        variant="body2"
-                                        className={useStyles.inline}
-                                        color="textPrimary"
-                                    >
-                                        { ReactHtmlParser(element.body) }
-                                    </Typography>
-
-                                    <Typography
-                                        component="span"
-                                        variant="body2"
-                                        className={useStyles.inline}
-                                        color="textPrimary"
-                                    >
-                                        {
-                                            "Score: "+element.score +"\n"+"IsAccepted: "+ element.is_accepted
-                                        }
-                                    </Typography>
-
-                                </React.Fragment>
-                            }
-                        />
                     } alignItems="flex-start">
                         <div>
                             <List className={useStyles.root}>
                                 {this.createComment(element)}
                             </List>
                         </div>
-                    </Collapsible>
+                    </Collapsible>*/}
+
+                    <div className={gridStyle.root}>
+                        <Grid container spacing={2}>
+                            {/*<Grid item xs={1}>*/}
+
+                            {/*</Grid>*/}
+                            <Grid item xs={10}>
+                                <React.Fragment>
+                                    <Typography variant="body2" color="textSecondary" className={useStyles.answerText} component="p">
+                                        { ReactHtmlParser(element.body) }
+                                    </Typography>
+                                </React.Fragment>
+                            </Grid>
+                            <Grid item xs={2}>
+                                <div>
+                                    {
+                                        "Score: "+element.score +"\n"+"IsAccepted: "+ element.is_accepted
+                                    }
+                                    {element.owner.display_name}
+                                </div>
+                            </Grid>
+                        </Grid>
+                    </div>
 
                 </ListItem>
                 <Divider variant="inset" component="li" />
