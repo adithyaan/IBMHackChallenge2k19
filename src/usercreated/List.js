@@ -6,6 +6,7 @@ import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import Collapsible from 'react-collapsible';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -68,7 +69,7 @@ class ListView extends Component{
                                     className={useStyles.inline}
                                     color="textPrimary"
                                 >
-                                    {element.body}
+                                   { ReactHtmlParser(element.body) } 
                                 </Typography>
                             </React.Fragment>
                         }
