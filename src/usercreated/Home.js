@@ -12,15 +12,17 @@ import {Typography} from "@material-ui/core";
 import Alist from "./Alist";
 import ListView from "./List";
 
+
 class Home extends Component{
 
 
 
     constructor(props){
         super(props)
-        this.state = {textInput:"",search_results:[],show:false};
+        this.state = {textInput:"",search_results:[],show:false,sorted_data:[]};
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onKeyDown = this.onKeyDown.bind(this);
+        this.filterData = this.filterData.bind(this);
     }
 
     onTextChange = (event) =>{
@@ -45,14 +47,24 @@ class Home extends Component{
         // alert(finalurl);
         var promise=fetch(finalurl)
         var result=promise.then((response)=>response.json());
-        result.then((response)=>{
+        var filter= result.then((response)=>{
               this.setState({search_results:response.items,show:true});
-              alert(this.state.search_results);
+                console.log(response);
+            });
+          filter.then((json)=>{
+           var answers=this.state.search_results[1].answers;
+        //    alert(JSON.stringify(answers[0].score));
+          })
 
-              console.log(this.state.search_results);
+    }
 
-          });
+    filterData(){
+        var data=this.state.search_results;
+        for(var i=0;i<data.length;i++){
+            this.state.sorted_data[i]=data[i];
+        }
 
+        alert(JSON.stringify(data));
     }
 
     render(){

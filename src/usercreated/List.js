@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
+import Collapsible from 'react-collapsible';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -21,17 +22,44 @@ class ListView extends Component{
 
     constructor(props) {
         super(props);
+        this.createAnswerListItem = this.createAnswerListItem.bind(this); 
+        // console.log(props.results);
+         
     }
 
     createListItem(items) {
-        return items.map(element=>
+        // console.log(JSON.stringify(items));
+        
+        return items.map((element)=>
+
             (<div>
-                <ListItem alignItems="flex-start">
-                    {/*<ListItemAvatar>*/}
-                    {/*    <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />*/}
-                    {/*</ListItemAvatar>*/}
+              <ListItem> 
+                <Collapsible trigger={element.title} alignItems="flex-start">
+                    <div>
+                    <List className={useStyles.root}>
+                        {this.createAnswerListItem(element.answers)}
+                    </List>
+                    </div>
+                </Collapsible>
+                </ListItem>
+                <Divider variant="inset" component="li" />
+            </div>
+            ));
+    }
+
+
+    createAnswerListItem(answers) {
+        
+        if (answers === undefined){
+            answers = [];
+        }
+
+        return answers.map((element)=>
+            (<div>
+              <ListItem> 
+                    
                     <ListItemText
-                        primary={element.title}
+                        primary={element.creation_date}
                         secondary={
                             <React.Fragment>
                                 <Typography
@@ -40,9 +68,8 @@ class ListView extends Component{
                                     className={useStyles.inline}
                                     color="textPrimary"
                                 >
-                                    {element.owner.display_name}
+                                    {element.body}
                                 </Typography>
-                                {element.link}
                             </React.Fragment>
                         }
                     />
