@@ -35,13 +35,13 @@
             this.invokeQuestions = this.invokeQuestions.bind(this);
         }
 
-        invokeQuestions(event){
+        invokeQuestions(){
             if(!this.state.showQuestions){
                 this.setState({showAnswers:false, showQuestions:true});
             }
         }
 
-        invokeAnswers(event){
+        invokeAnswers(){
             if(!this.state.showAnswers){
                 this.setState({showQuestions:false, showAnswers:true});
             }
@@ -79,6 +79,7 @@
         }
 
         handleSubmit(){
+            console.log(data.items);
             this.setState({search_results:data.items,showButtons:true,showQuestions:true,showProgress:false});
         }
 

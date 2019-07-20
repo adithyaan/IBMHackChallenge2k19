@@ -5,8 +5,6 @@ import QuestionComponent from "./QuestionComponent";
 
 const useStyles = makeStyles(theme => ({
     root: {
-        width: '100%',
-        maxWidth: 360,
         backgroundColor: theme.palette.background.paper,
     },
     inline: {
@@ -34,7 +32,7 @@ class TopQuestions extends Component{
         const items = this.props.results;
 
         return (
-            <List className={useStyles.root}>
+            <List style={{width:'70%'}} className={useStyles.root}>
                 {this.createListItem(items)}
             </List>
         );

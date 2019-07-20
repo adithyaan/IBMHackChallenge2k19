@@ -6,6 +6,7 @@ import {ArrowDropDown, ArrowDropUp} from "@material-ui/icons";
 import AnswerComponent from "./AnswerComponent";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Button from "@material-ui/core/Button";
+import InfoComponent from "./InfoComponent";
 
 const styles = makeStyles((theme)=>({
     chip: {
@@ -37,15 +38,13 @@ class QuestionComponent extends Component{
         const question = this.props.question;
         
         return(
-            <div style={{margin:10,padding:10,boxShadow: '2px 5px 2px 2px #888888'}}>
+            <div style={{margin:10,padding:10,boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}>
                 <div style={{display: 'flex', height:20 }}>
-                    <div style={{width:900,fontSize:15}}>
+                    <div style={{width:850,fontSize:15}}>
                         <b style={{color:'#EF5350'}}> { ReactHtmlParser(question.title) } </b>
                     </div>
                     <div style={{fontSize: 15}}>
-                        {"Score:"+question.score}
-                        {"Upvote:"+question.up_vote_count}
-                        {"Asked By: "+question.owner.display_name}
+                        <InfoComponent data={question}/>
                     </div>
                 </div>
                 <div style={{display:'flex',justifyContent:'flex-start',marginTop:10}}>
