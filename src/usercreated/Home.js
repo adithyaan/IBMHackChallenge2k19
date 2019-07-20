@@ -9,10 +9,11 @@
     import {green, lightBlue, common} from '@material-ui/core/colors';
     import Box from '@material-ui/core/Box';
     import CircularProgress from '@material-ui/core/CircularProgress';
-    import ListView from "./List";
+    import TopQuestions from "./TopQuestions";
     import TopAnswers from "./TopAnswers";
     import Icon from '@material-ui/core/Icon';
     import QuestionAnswerRounded from '@material-ui/icons/QuestionAnswerRounded';
+    import Button from "@material-ui/core/Button";
 
 
     const styles = {
@@ -27,10 +28,24 @@
 
         constructor(props){
             super(props)
-            this.state = {textInput:"",search_results:[],show:false,sorted_data:[], showProgress: false , showAnswers: false};
+            this.state = {textInput:"",search_results:[],showButtons:false,showQuestions:false,sorted_data:[], showProgress: false , showAnswers: false};
             this.handleSubmit = this.handleSubmit.bind(this);
             this.onKeyDown = this.onKeyDown.bind(this);
             this.filterData = this.filterData.bind(this);
+            this.invokeAnswers = this.invokeAnswers.bind(this);
+            this.invokeQuestions = this.invokeQuestions.bind(this);
+        }
+
+        invokeQuestions(event){
+            if(!this.state.showQuestions){
+                this.setState({showAnswers:false, showQuestions:true});
+            }
+        }
+
+        invokeAnswers(event){
+            if(!this.state.showAnswers){
+                this.setState({showQuestions:false, showAnswers:true});
+            }
         }
 
         onTextChange = (event) =>{
@@ -48,7 +63,7 @@
 
         handleSubmitNet() {
 
-            this.setState({showProgress: true, show:false,showAnswers:false});
+            this.setState({showProgress: true, showQuestions:false,showAnswers:false});
             var url1="https://api.stackexchange.com//2.2/search/advanced?order=desc&sort=relevance&q=";
             var url2=this.state.textInput+"&";
             var url3="site=stackoverflow&filter=!0V-ZwUEu0wMbto7XPem1M8Bnq";
@@ -58,19 +73,19 @@
             var promise=fetch(finalurl)
             var result=promise.then((response)=>response.json());
             result.then((response)=>{
-                  this.setState({search_results:response.items,show:false ,showAnswers: true,showProgress:false});
+                  this.setState({search_results:response.items,showQuestions:true,showProgress:false});
 
             });
 
         }
 
         handleSubmit(){
-            this.setState({search_results:data.items,show:false ,showAnswers: true,showProgress:false});
+            this.setState({search_results:data.items,showButtons:true,showQuestions:true,showProgress:false});
         }
 
         filterData(){
-            var data=this.state.search_results;
-            for(var i=0;i<data.length;i++){
+            let data=this.state.search_results;
+            for(let i=0;i<data.length;i++){
                 this.state.sorted_data[i]=data[i];
             }
 
@@ -130,6 +145,13 @@
                                     <div style={{color:'white',position:'relative',paddingLeft:10}}>
                                         <b><i>Search Tool</i></b>
                                     </div>
+                                    {
+                                        this.state.showButtons && <div style={{marginLeft:30}}>
+                                            <Button variant="outlined" color="primary" onClick={this.invokeQuestions} style={{marginLeft:10}}>Questions</Button>
+                                            <Button variant="outlined" color="primary" onClick={this.invokeAnswers} style={{marginLeft:10}}>Answers</Button>
+                                        </div>
+                                    }
+
                                 </div>
                             </Box>
                             <Box flexGrow={2}>
@@ -160,7 +182,7 @@
                         }
                         {/*Displays list of responses from stack overflow*/}
                         {
-                            this.state.show && <ListView results={this.state.search_results} />
+                            this.state.showQuestions && <TopQuestions results={this.state.search_results} />
                         }
 
                         {

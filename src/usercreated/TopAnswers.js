@@ -1,14 +1,9 @@
 import React, {Component} from 'react';
 import List from "@material-ui/core/List";
 import {makeStyles} from "@material-ui/core";
-import Divider from '@material-ui/core/Divider';
-import ReactHtmlParser from 'react-html-parser';
-import ListItem from '@material-ui/core/ListItem';
-import ThumbUp from '@material-ui/icons/ThumbUp';
-import Icon from '@material-ui/core/Icon';
-import Collapsible from 'react-collapsible';
 import Button from '@material-ui/core/Button';
 import TextField from "@material-ui/core/TextField";
+import AnswerComponent from "./AnswerComponent";
 
 
 const useStyles = makeStyles(theme => ({
@@ -21,12 +16,6 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-
-const gridStyle = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-    }
-}));
 
 class TopAnswers extends Component{
     constructor(props) {
@@ -47,61 +36,10 @@ class TopAnswers extends Component{
             return b.score - a.score;
         });
 
-        console.log(ans);
-
-        return ans.map(element=>(
-            <div style={{border:'2px solid green',margin:10}}>
-                <ListItem>
-                    <div style={{display: 'flex', justifyContent: 'space-between' }}>
-                        <div style={{width:70,fontSize:15,padding:20}}>
-                            <Icon color="primary">
-                                <ThumbUp/>{element.score}
-                            </Icon>
-                        </div>
-                        <div style={{width:900,fontSize:15}}>
-                            { ReactHtmlParser(element.body) }
-                        </div>
-                        <div style={{width:100, padding:20, fontSize: 15}}>
-                            {element.owner.display_name}
-                        </div>
-                    </div>
-                </ListItem>
-                <div style={{marginLeft:130}}>
-                    <Collapsible trigger={
-                        <p style={{color:'blue'}}>Comments</p>
-                    } alignItems="flex-start">
-                        <div style={{margin:10,backgroundColor:'#42A5F5',color:'#fff',width:'70%'}}>
-                            <List>
-                                {this.createComment(element)}
-                            </List>
-                        </div>
-                    </Collapsible>
-                </div>
-                <Divider variant="middle" component="li" />
-            </div>
-        ));
+        return (
+            <AnswerComponent answers = {ans}/>
+        );
     };
-
-
-    createComment(element) {
-
-        let comments = [];
-        if (element.hasOwnProperty("comments")){
-            comments = element.comments;
-        }
-
-        return comments.map((element)=>
-            (   <div style={{padding:10}}>
-                    <div style={{fontSize:15}}>
-                        { ReactHtmlParser(element.body) }
-                    </div>
-                    <div style={{fontSize: 15}}>
-                        {element.owner.display_name}
-                    </div>
-                    {/*<Divider variant="fullWidth" component="li" />*/}
-                </div>
-            ));
-    }
 
     render() {
         const answers = this.props.results;
