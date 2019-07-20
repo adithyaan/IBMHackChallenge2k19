@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => ({
 class TopAnswers extends Component{
     constructor(props) {
         super(props);
+        this.renderAnswers = this.renderAnswers.bind(this);
     }
 
     renderAnswers = (answers) =>{
@@ -36,9 +37,9 @@ class TopAnswers extends Component{
             return b.score - a.score;
         });
 
-        return (
-            <AnswerComponent answers = {ans}/>
-        );
+        return ans.map(element=>(
+            <AnswerComponent answer = {element}/>
+        ));
     };
 
     render() {

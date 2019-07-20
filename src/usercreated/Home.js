@@ -6,7 +6,6 @@
     import TextField from '@material-ui/core/TextField';
     import { ThemeProvider } from '@material-ui/styles';
     import Fab from '@material-ui/core/Fab';
-    import {green, lightBlue, common} from '@material-ui/core/colors';
     import Box from '@material-ui/core/Box';
     import CircularProgress from '@material-ui/core/CircularProgress';
     import TopQuestions from "./TopQuestions";
@@ -31,7 +30,7 @@
             this.state = {textInput:"",search_results:[],showButtons:false,showQuestions:false,sorted_data:[], showProgress: false , showAnswers: false};
             this.handleSubmit = this.handleSubmit.bind(this);
             this.onKeyDown = this.onKeyDown.bind(this);
-            this.filterData = this.filterData.bind(this);
+            //this.filterData = this.filterData.bind(this);
             this.invokeAnswers = this.invokeAnswers.bind(this);
             this.invokeQuestions = this.invokeQuestions.bind(this);
         }
@@ -83,14 +82,14 @@
             this.setState({search_results:data.items,showButtons:true,showQuestions:true,showProgress:false});
         }
 
-        filterData(){
-            let data=this.state.search_results;
-            for(let i=0;i<data.length;i++){
-                this.state.sorted_data[i]=data[i];
-            }
-
-            alert(JSON.stringify(data));
-        }
+        // filterData(){
+        //     let data=this.state.search_results;
+        //     for(let i=0;i<data.length;i++){
+        //         this.state.sorted_data[i]=data[i];
+        //     }
+        //
+        //     alert(JSON.stringify(data));
+        // }
 
         render(){
             const appBarChildStyle = {
