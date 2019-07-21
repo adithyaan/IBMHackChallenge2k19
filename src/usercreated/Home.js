@@ -60,7 +60,7 @@
             }
         }
 
-        handleSubmitNet() {
+        handleSubmit() {
 
             this.setState({showProgress: true, showQuestions:false,showAnswers:false});
             var url1="https://api.stackexchange.com//2.2/search/advanced?order=desc&sort=relevance&q=";
@@ -72,13 +72,13 @@
             var promise=fetch(finalurl)
             var result=promise.then((response)=>response.json());
             result.then((response)=>{
-                  this.setState({search_results:response.items,showQuestions:true,showProgress:false});
+                  this.setState({search_results:response.items,showButtons:true,showQuestions:true,showProgress:false});
 
             });
 
         }
 
-        handleSubmit(){
+        handleSubmitNet(){
             console.log(data.items);
             this.setState({search_results:data.items,showButtons:true,showQuestions:true,showProgress:false});
         }
@@ -161,7 +161,7 @@
                                     fullWidth={true}
                                     type="text"
                                     autoFocus = {true}
-                                    label = "Enter Query"
+                                    placeholder="Enter Query"
                                     classes={useStyles.textField}
                                     variant="outlined"
                                     value={this.state.textInput}
