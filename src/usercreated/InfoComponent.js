@@ -13,7 +13,7 @@ class InfoComponent extends Component{
     }
 
     componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
-        console.log(nextProps);
+        
     }
 
     render() {
