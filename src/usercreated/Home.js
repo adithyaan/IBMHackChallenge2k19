@@ -14,7 +14,7 @@
     import QuestionAnswerRounded from '@material-ui/icons/QuestionAnswerRounded';
     import Button from "@material-ui/core/Button";
     import {data} from "./TestData";
-
+    import {config} from '../config/config';
 
     const styles = {
         position:'absolute',
@@ -27,12 +27,17 @@
 
         constructor(props){
             super(props)
-            this.state = {textInput:"",search_results:[],showButtons:false,showQuestions:false,sorted_data:[], showProgress: false , showAnswers: false};
+            this.state = {textInput:"",search_results:[],showButtons:false,
+            showQuestions:false,sorted_data:[], formattedTags:"",
+            showProgress: false , showAnswers: false};
+
+
             this.handleSubmit = this.handleSubmit.bind(this);
             this.onKeyDown = this.onKeyDown.bind(this);
             //this.filterData = this.filterData.bind(this);
             this.invokeAnswers = this.invokeAnswers.bind(this);
             this.invokeQuestions = this.invokeQuestions.bind(this);
+            this.extractTags = this.extractTags.bind(this);
         }
 
         invokeQuestions(){
@@ -56,19 +61,20 @@
             if (event.key === 'Enter') {
                 event.preventDefault();
                 event.stopPropagation();
-                this.handleSubmit();
+                this.extractTags();
             }
         }
 
         handleSubmit() {
 
             this.setState({showProgress: true, showQuestions:false,showAnswers:false});
-            var url1="https://api.stackexchange.com//2.2/search/advanced?order=desc&sort=relevance&q=";
-            var url2=this.state.textInput+"&";
-            var url3="site=stackoverflow&filter=!0V-ZwUEu0wMbto7XPem1M8Bnq";
-            var finalurl=url1+url2+url3;
+            var url1 = "https://api.stackexchange.com//2.2/search/advanced?order=desc&sort=relevance&q=";
+            var url2 = this.state.textInput+"&";
+            var url3 = "site=stackoverflow&filter=!0V-ZwUEu0wMbto7XPem1M8Bnq";
+            var tagUrl = "tagged="+this.state.formattedTags+"&";
+            var finalurl=url1+url2+tagUrl+url3;
 
-            // alert(finalurl);
+             console.log(finalurl);
             var promise=fetch(finalurl)
             var result=promise.then((response)=>response.json());
             result.then((response)=>{
@@ -83,14 +89,14 @@
             this.setState({search_results:data.items,showButtons:true,showQuestions:true,showProgress:false});
         }
 
-        // filterData(){
-        //     let data=this.state.search_results;
-        //     for(let i=0;i<data.length;i++){
-        //         this.state.sorted_data[i]=data[i];
-        //     }
-        //
-        //     alert(JSON.stringify(data));
-        // }
+        filterData(){
+            let data=this.state.search_results;
+            for(let i=0;i<data.length;i++){
+                this.state.sorted_data[i]=data[i];
+            }
+        
+            alert(JSON.stringify(data));
+        }
 
         render(){
             const appBarChildStyle = {
@@ -170,7 +176,7 @@
                                 </ThemeProvider>
                             </Box>
                             <Box>
-                                <Fab color="inherit" aria-label="Add" size={"medium"} style={{marginRight:20, marginLeft:20}} onClick={this.handleSubmit} className={useStyles.fab}>
+                                <Fab color="inherit" aria-label="Add" size={"medium"} style={{marginRight:20, marginLeft:20}} onClick={this.extractTags} className={useStyles.fab}>
                                     <SearchIcon />
                                 </Fab>
                             </Box>
@@ -193,6 +199,26 @@
                 </div>
 
             )
+        }
+
+        extractTags (){
+            var headers = {'Content-Type':'Application/json'};
+            var url = config.extraction.url+this.state.textInput;
+            var promise = fetch(url,headers)
+            console.log(url);
+            var result=promise.then((response)=>response.json());
+            result.then((response)=>{
+                var tags = response.data;
+                var formattedTags = ""
+                for(let a in tags){
+                    formattedTags+=tags[a]+";"
+                }
+                formattedTags=formattedTags.substr(0,formattedTags.length-1)
+                this.setState({formattedTags:formattedTags})
+                this.handleSubmit();
+            }).catch(error =>{
+                console.log(error);
+            });
         }
 
     }

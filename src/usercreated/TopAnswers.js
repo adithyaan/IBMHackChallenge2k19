@@ -20,15 +20,38 @@ const useStyles = makeStyles(theme => ({
 class TopAnswers extends Component{
     constructor(props) {
         super(props);
+        this.state = {
+            results: this.props.results
+        };
         this.renderAnswers = this.renderAnswers.bind(this);
         this.filterAnswers = this.filterAnswers.bind(this);
+        this.onTextChange = this.onTextChange.bind(this);
+        this.removeFilter = this.removeFilter.bind(this);
+        this.state = {k:[],txt:0,filterInput:0,test:this.props.results,filterApplied:false,filter_arr:[]}
     }
 
-    filterAnswers = (answers) => {
+    
+    componentWillReceiveProps(nextProps){
+        this.setState({k:this.props.results})
+    }
 
-    };
+    filterAnswers(){
+        // let ans=this.state.k;
+        // ans = ans.slice(1,k)
+        this.setState({filterApplied:true})
+        var filterInput = this.state.filterInput;
+        var ans = this.state.test;
+        ans = ans.slice(0,filterInput);
+        this.setState({filter_arr:ans})
 
-    renderAnswers = (answers) =>{
+        console.log("resuts")
+        console.log(this.state.test)
+
+
+
+    }
+
+    renderAnswers = (answers,k) =>{
 
         let ans = [];
 
@@ -42,23 +65,40 @@ class TopAnswers extends Component{
             return b.score - a.score;
         });
 
+
         return ans.map(element=>(
             <AnswerComponent answer = {element}/>
         ));
     };
+
+    onTextChange = (event) =>{
+        this.setState({filterInput: event.target.value});
+    };
+
+    removeFilter() {
+        this.setState({filterApplied:false})
+    }
 
     render() {
         const answers = this.props.results;
         return (
             <div style={{flex:1,flexDirection:'column'}}>
                 <div style={{margin:10}}>
-                    <TextField color={'#000000'} style={{width:70,height:10}} variant="outlined" type={'number'}/>
-                    <Button variant="contained" color="primary" style={{margin:10}} onClick={this.filterAnswers(answers)}>
+                    <TextField color={'#000000'} style={{width:70,height:10}} variant="outlined" onChange={this.onTextChange} type={'number'}/>
+                    <Button variant="contained" color="primary" style={{margin:10}} onClick={this.filterAnswers}>
                         <FilterList/> Filter
+                    </Button>
+                    <Button variant="contained" color="secondary" style={{margin:10}} onClick={this.removeFilter}>
+                        Remove Filter
                     </Button>
                 </div>
                 <List className={useStyles.root}>
-                    {this.renderAnswers(answers)}
+                    {this.state.filterApplied &&
+                         this.renderAnswers(this.state.filter_arr,this.state.k)
+                    }
+                    {!this.state.filterApplied &&
+                        this.renderAnswers(this.state.test,this.state.k)
+                    }
                 </List>
             </div>
         );
