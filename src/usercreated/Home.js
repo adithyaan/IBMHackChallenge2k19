@@ -37,7 +37,8 @@
             //this.filterData = this.filterData.bind(this);
             this.invokeAnswers = this.invokeAnswers.bind(this);
             this.invokeQuestions = this.invokeQuestions.bind(this);
-            this.extractTags = this.extractTags.bind(this);
+            this.analyseSentiments = this.analyseSentiments.bind(this);
+            this.testSentiment = this.testSentiment.bind(this);
         }
 
         invokeQuestions(){
@@ -65,7 +66,7 @@
             }
         }
 
-        handleSubmit() {
+        handleSubmitNet() {
 
             this.setState({showProgress: true, showQuestions:false,showAnswers:false});
             var url1 = "https://api.stackexchange.com//2.2/search/advanced?order=desc&sort=relevance&q=";
@@ -79,13 +80,57 @@
             var result=promise.then((response)=>response.json());
             result.then((response)=>{
                   this.setState({search_results:response.items,showButtons:true,showQuestions:true,showProgress:false});
-
+                  return response.items;
             });
 
         }
 
-        handleSubmitNet(){
-            console.log(data.items);
+        analyseSentiments(answers){
+            let datasToTest =[];
+            let len = 20;
+            if(len>answers.length){
+                len= answers.length;
+            }
+            for(let i=0;i<len;i++){
+                let data= "";
+                for(let comments in answers[i].comments){
+                    data+=comments+".";
+                }
+                datasToTest[i]=data;
+            }
+        }
+
+        testSentiment(){
+            const dat = data.items[0].answers[0].comments;
+            const body = dat[0].body
+            console.log(body);    
+            const extracted = body.replace(/(<code>|<span>)(.*)(<\/span>|<\/code>)/gi,"")
+            this.sentimentRequest(extracted)          
+        }
+
+        sentimentRequest(data){
+            fetch("https://gateway-lon.watsonplatform.net/natural-language-understanding/api", {
+                body: {
+                    "text": data,
+                    "features": {
+                      "sentiment": {
+                        
+                      }
+                    }
+                  }
+                  ,
+                headers: {
+                  Authorization: "Basic YXBpa2V5OlJUTHVxS2VIWExwMW1BMjNGQTFMWmN5QXNjM3pxalZpTEtVQ3Q4bDE1MmQw",
+                  "Content-Type": "application/json"
+                },
+                method: "POST"
+              }).then(response=>{
+                    console.log(response);
+              });
+        }
+
+        handleSubmit(){
+            this.testSentiment();
             this.setState({search_results:data.items,showButtons:true,showQuestions:true,showProgress:false});
         }
 
