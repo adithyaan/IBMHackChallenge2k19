@@ -15,6 +15,8 @@
     import Button from "@material-ui/core/Button";
     import {data} from "./TestData";
     import {config} from '../config/config';
+    const NaturalLanguageUnderstandingV1 = require('ibm-watson/natural-language-understanding/v1.js');
+
 
     const styles = {
         position:'absolute',
@@ -28,13 +30,13 @@
         constructor(props){
             super(props)
             this.state = {textInput:"",search_results:[],showButtons:false,
-            showQuestions:false,sorted_data:[], formattedTags:"",
+            showQuestions:false,sorted_data:[], formattedTags:"",filterInput:'',
             showProgress: false , showAnswers: false};
 
 
             this.handleSubmit = this.handleSubmit.bind(this);
             this.onKeyDown = this.onKeyDown.bind(this);
-            //this.filterData = this.filterData.bind(this);
+            this.extractTags = this.extractTags.bind(this);
             this.invokeAnswers = this.invokeAnswers.bind(this);
             this.invokeQuestions = this.invokeQuestions.bind(this);
             this.analyseSentiments = this.analyseSentiments.bind(this);
@@ -101,6 +103,54 @@
         }
 
         testSentiment(){
+
+            const naturalLanguageUnderstanding = new NaturalLanguageUnderstandingV1({
+                version: '2019-07-12',
+              
+                iam_apikey: 'RTLuqKeHXLp1mA23FA1LZcyAsc3zqjViLKUCt8l152d0',
+              
+                url: 'https://gateway-lon.watsonplatform.net/natural-language-understanding/api'
+              
+              });
+              const analyzeParams = {
+              
+                  'text': 'Leonardo DiCaprio won Best Actor in a Leading Role for his performance.',
+    
+                'features': {
+              
+                  'relations': {}
+              
+                },
+              
+                'keywords': {
+              
+                  'emotion': true,
+              
+                  'sentiment': true,
+              
+                  'limit': 2,
+              
+                },
+              
+              };
+              
+              
+              
+              naturalLanguageUnderstanding.analyze(analyzeParams)
+              
+                .then(analysisResults => {
+              
+                  console.log(JSON.stringify(analysisResults, null, 2));
+              
+                })
+              
+                .catch(err => {
+              
+                  console.log('error:', err);
+              
+                });
+              
+              
             const dat = data.items[0].answers[0].comments;
             const body = dat[0].body
             console.log(body);    
@@ -130,7 +180,7 @@
         }
 
         handleSubmit(){
-            this.testSentiment();
+            // this.testSentiment();
             this.setState({search_results:data.items,showButtons:true,showQuestions:true,showProgress:false});
         }
 
@@ -139,8 +189,6 @@
             for(let i=0;i<data.length;i++){
                 this.state.sorted_data[i]=data[i];
             }
-        
-            alert(JSON.stringify(data));
         }
 
         render(){
@@ -260,7 +308,8 @@
                 }
                 formattedTags=formattedTags.substr(0,formattedTags.length-1)
                 this.setState({formattedTags:formattedTags})
-                this.handleSubmit();
+                this.handleSubmitNet();
+                
             }).catch(error =>{
                 console.log(error);
             });
