@@ -1,4 +1,4 @@
-    import AppBar from '@material-ui/core/AppBar';
+   import AppBar from '@material-ui/core/AppBar';
     import React ,{ Component } from 'react';
     import Toolbar from '@material-ui/core/Toolbar';
     import { makeStyles, createMuiTheme } from '@material-ui/core/styles';
@@ -15,8 +15,6 @@
     import Button from "@material-ui/core/Button";
     import {data} from "./TestData";
     import {config} from '../config/config';
-    const NaturalLanguageUnderstandingV1 = require('ibm-watson/natural-language-understanding/v1.js');
-
 
     const styles = {
         position:'absolute',
@@ -40,7 +38,6 @@
             this.invokeAnswers = this.invokeAnswers.bind(this);
             this.invokeQuestions = this.invokeQuestions.bind(this);
             this.analyseSentiments = this.analyseSentiments.bind(this);
-            this.testSentiment = this.testSentiment.bind(this);
         }
 
         invokeQuestions(){
@@ -102,62 +99,6 @@
             }
         }
 
-        testSentiment(){
-
-            const naturalLanguageUnderstanding = new NaturalLanguageUnderstandingV1({
-                version: '2019-07-12',
-              
-                iam_apikey: 'RTLuqKeHXLp1mA23FA1LZcyAsc3zqjViLKUCt8l152d0',
-              
-                url: 'https://gateway-lon.watsonplatform.net/natural-language-understanding/api'
-              
-              });
-              const analyzeParams = {
-              
-                  'text': 'Leonardo DiCaprio won Best Actor in a Leading Role for his performance.',
-    
-                'features': {
-              
-                  'relations': {}
-              
-                },
-              
-                'keywords': {
-              
-                  'emotion': true,
-              
-                  'sentiment': true,
-              
-                  'limit': 2,
-              
-                },
-              
-              };
-              
-              
-              
-              naturalLanguageUnderstanding.analyze(analyzeParams)
-              
-                .then(analysisResults => {
-              
-                  console.log(JSON.stringify(analysisResults, null, 2));
-              
-                })
-              
-                .catch(err => {
-              
-                  console.log('error:', err);
-              
-                });
-              
-              
-            const dat = data.items[0].answers[0].comments;
-            const body = dat[0].body
-            console.log(body);    
-            const extracted = body.replace(/(<code>|<span>)(.*)(<\/span>|<\/code>)/gi,"")
-            this.sentimentRequest(extracted)          
-        }
-
         sentimentRequest(data){
             fetch("https://gateway-lon.watsonplatform.net/natural-language-understanding/api", {
                 body: {
@@ -179,10 +120,21 @@
               });
         }
 
-        handleSubmit(){
-            // this.testSentiment();
+        handleSubmitTemp(){
             this.setState({search_results:data.items,showButtons:true,showQuestions:true,showProgress:false});
         }
+
+	handleSubmit(){
+	    this.setState({showProgress: true, showQuestions:false,showAnswers:false});
+            var finalurl="http://localhost:5000/fetchdata?query="+this.state.textInput;
+            var promise=fetch(finalurl)
+            var result=promise.then((response)=>response.json());
+            result.then((response)=>{
+                  alert(response.items.length);
+                  this.setState({search_results:response.items,showButtons:true,showQuestions:true,showProgress:false});
+                  return response.items;
+            });
+	}
 
         filterData(){
             let data=this.state.search_results;
@@ -269,7 +221,7 @@
                                 </ThemeProvider>
                             </Box>
                             <Box>
-                                <Fab color="inherit" aria-label="Add" size={"medium"} style={{marginRight:20, marginLeft:20}} onClick={this.extractTags} className={useStyles.fab}>
+                                <Fab color="inherit" aria-label="Add" size={"medium"} style={{marginRight:20, marginLeft:20}} onClick={this.handleSubmit} className={useStyles.fab}>
                                     <SearchIcon />
                                 </Fab>
                             </Box>
@@ -317,4 +269,4 @@
 
     }
 
-    export default Home;
+export default Home;
