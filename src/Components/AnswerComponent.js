@@ -6,10 +6,8 @@ import {ArrowDropDown, ArrowDropUp} from "@material-ui/icons";
 import ReactHtmlParser from "react-html-parser";
 import Collapsible from "react-collapsible";
 import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
 import Avatar from "@material-ui/core/Avatar";
-import Card from '@material-ui/core/Card';
 
 class AnswerComponent extends Component{
     constructor(props){
@@ -38,46 +36,7 @@ class AnswerComponent extends Component{
             ));
     }
 
-    backup(answer){
-        return(
-            <div style={{margin:10}}>
-                <ListItem>
-                    <div style={{display: 'flex', justifyContent: 'space-between' }}>
-                        <div style={{width:'10%',fontSize:15,padding:20}}>
-                            <div style={{fontSize: 15}}>
-                                <div style={{ display:'flex',
-                                    justifyContent:'center'}}>
-                                    <Avatar src={answer.owner.profile_image}/>
-                                    {answer.owner.display_name}
-                                </div>
-                            </div>
-                            <Icon color="primary">
-                                <ThumbUp/>{answer.score}
-                            </Icon>
-                        </div>
-                        <div style={{fontSize:15,width:'80%'}}>
-                            { ReactHtmlParser(answer.body) }
-                        </div>
-                    </div>
-                </ListItem>
-                <div style={{marginLeft:'20%'}}>
-                    <Collapsible trigger={
-                        <Button variant="extended" color={"inherit"} onClick={()=>this.setState({openComments: !this.state.openComments})}>
-                            Comments
-                            {this.state.openComments ? <ArrowDropUp/> : <ArrowDropDown/>}
-                        </Button>
-                    } alignItems="flex-start">
-                        <div style={{margin:10,backgroundColor:'#42A5F5',color:'#fff',width:'70%'}}>
-                            <List>
-                                {this.createComment(answer)}
-                            </List>
-                        </div>
-                    </Collapsible>
-                </div>
-                <Divider variant="middle" component="li" />
-            </div>
-        )
-    }
+    
 
     render(){
 

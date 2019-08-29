@@ -1,6 +1,5 @@
 var config={
-    extraction:{url:"http://127.0.0.1:5000/extractTags?query="},
-    stackExchange:{url:"http://api.stackexchange.com"}
+    url:"http://192.168.137.67:5000/fetchdata?query="
 }
 
 export {config}

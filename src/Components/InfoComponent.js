@@ -44,12 +44,12 @@ class InfoComponent extends Component{
 
                 <div style={styles.subContainer}>
 
-                    <div style={styles.elem}>
+                    {/* <div style={styles.elem}>
                         <Icon>
                             <ThumbUp/>
                         </Icon>
                         <center>{data.up_vote_count}</center>
-                    </div>
+                    </div> */}
 
                     <div style={styles.elem}>
                         <Icon>

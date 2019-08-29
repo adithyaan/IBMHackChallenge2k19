@@ -27,7 +27,7 @@ class TopAnswers extends Component{
         this.filterAnswers = this.filterAnswers.bind(this);
         this.onTextChange = this.onTextChange.bind(this);
         this.removeFilter = this.removeFilter.bind(this);
-        this.state = {k:[],txt:0,filterInput:0,test:this.props.results,filterApplied:false,filter_arr:[]}
+        this.state = {k:[],txt:0,filterInput:0,test:this.props.results,filterApplied:false,filter_arr:[],sorted_arr:[]}
     }
 
     
@@ -36,8 +36,7 @@ class TopAnswers extends Component{
     }
 
     filterAnswers(){
-        // let ans=this.state.k;
-        // ans = ans.slice(1,k)
+
         this.setState({filterApplied:true})
         var filterInput = this.state.filterInput;
         var ans = this.state.test;
@@ -65,10 +64,17 @@ class TopAnswers extends Component{
             return b.score - a.score;
         });
 
-
+        if(this.state.filterApplied){
+            ans = ans.slice(0,this.state.filterInput);
+            return ans.map(element=>(
+                <AnswerComponent answer = {element}/>
+            ));
+        }
+        else{
         return ans.map(element=>(
             <AnswerComponent answer = {element}/>
         ));
+        }
     };
 
     onTextChange = (event) =>{
@@ -94,7 +100,7 @@ class TopAnswers extends Component{
                 </div>
                 <List className={useStyles.root}>
                     {this.state.filterApplied &&
-                         this.renderAnswers(this.state.filter_arr,this.state.k)
+                         this.renderAnswers(this.state.test,this.state.filterInput)
                     }
                     {!this.state.filterApplied &&
                         this.renderAnswers(this.state.test,this.state.k)

@@ -28,6 +28,10 @@ class QuestionComponent extends Component{
             answers = [];
         }
 
+        answers = answers.sort(function(a, b) {
+            return b.score - a.score;
+        });
+
         return answers.map((answer)=>(
                 <AnswerComponent answer = {answer}/>
         ));
