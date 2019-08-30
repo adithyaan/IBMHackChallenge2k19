@@ -1,5 +1,5 @@
 var config={
-    url:"http://192.168.137.67:5000/fetchdata?query="
+    url:"http://localhost:5000/fetchdata?sentiment=false&query="
 }
 
 export {config}

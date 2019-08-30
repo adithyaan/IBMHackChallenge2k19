@@ -25,7 +25,7 @@
     class Home extends Component{
         constructor(props){
             super(props)
-            this.state = {textInput:"",search_results:[],showButtons:false,
+            this.state = {answers:[],textInput:"",search_results:[],showButtons:false,
             showQuestions:false,sorted_data:[], formattedTags:"",filterInput:'',
             showProgress: false , showAnswers: false};
             this.handleSubmit = this.handleSubmit.bind(this);
@@ -70,8 +70,8 @@
             var promise = fetch(finalurl)
             var result = promise.then((response)=>response.json());
             result.then((response)=>{
-                  alert(response.items.length);
-                  this.setState({search_results:response.items,showButtons:true,showQuestions:true,showProgress:false});
+                //   alert(response.items.length);
+                  this.setState({answers:response.answers,search_results:response.items,showButtons:true,showQuestions:true,showProgress:false});
                   return response.items;
             });
 	    }
